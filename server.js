@@ -1,13 +1,14 @@
 const express = require('express');
 const logger = require('morgan');
+var jwt = require('jsonwebtoken');
+const bodyParser = require('body-parser');
+
 const movies = require('./routes/movies') ;
 const users = require('./routes/users');
-const bodyParser = require('body-parser');
 const mongoose = require('./config/database'); //database configuration
-var jwt = require('jsonwebtoken');
-const app = express();
 
 app.set('secretKey', 'nodeRestApi'); // jwt secret token
+const app = express();
 
 // connection to mongodb
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -66,5 +67,5 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(3000, function(){
-	console.log('Node server listening on port 3000');
+	console.log('Rodando na porta 3000');
 });
